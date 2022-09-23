@@ -1,22 +1,28 @@
 <template>
-  <div class="wrapper">Hello word</div>
+  <div class="wrapper">
+    <div>Consumpted nutrients</div>
+    <SingleMeal />
+  </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
+import singleMeal from "./components/SingleMeal.vue";
 
 export default {
-name: "myHeader",
-data(){
-  return 0
-},
-meals:[],
-mealElements:[]
-}
+  components: {
+    singleMeal: singleMeal,
+  },
+  // name: "myHeader",
+  // data() {
+  //   return 0;
+  // },
+  // meals: [],
+  // mealElements: [],
+};
 </script>
 
 <style scoped>
-.wrapper{
+.wrapper {
   width: 100%;
   margin: 0;
   padding: 30px;
