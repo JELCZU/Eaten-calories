@@ -1,16 +1,17 @@
 <template>
   <div class="wrapper">
     <div>Consumpted nutrients</div>
+    <div class="mealContainter"></div>
     <SingleMeal />
   </div>
 </template>
 
 <script>
-import singleMeal from "./components/SingleMeal.vue";
+import SingleMeal from "./components/SingleMeal.vue";
 
 export default {
   components: {
-    singleMeal: singleMeal,
+    SingleMeal: SingleMeal,
   },
   // name: "myHeader",
   // data() {
@@ -23,7 +24,7 @@ export default {
 
 <style scoped>
 .wrapper {
-  width: 100%;
+  width: 100%-paddding;
   margin: 0;
   padding: 30px;
 }
