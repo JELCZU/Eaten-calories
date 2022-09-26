@@ -16,14 +16,25 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    removeMealElement() {
+      alert("MealElementRemoved");
+      // this.items.push({title:this.newItem,
+      //   completed:false,
+      //   id:Math.random()
+      // })
+      // this.newItem=""
+    },
+  },
+};
 </script>
 
 <style scoped>
 .MealElementWrapper {
   width: 100%-paddding;
   margin-bottom: -1px;
-  padding-bottom: 20px;
+  position: relative;
 }
 table {
   background-color: lightgrey;

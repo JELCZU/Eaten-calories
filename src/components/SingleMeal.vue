@@ -1,49 +1,88 @@
 <template>
   <div class="singleMealWrapper">
-    <div class="singleMealName">Meal name</div>
-
-    <div class="mealElement">
-      <div><MealElementLegendRow /></div>
-      <div><MealElement /></div>
-      <div><MealElement /></div>
+    <div class="singleMealRibbon">
+      <label style="display: inline-block; vertical-align: middle"
+        >Meal name</label
+      >
+      <button
+        class="removeMeal"
+        style="display: inline-block; vertical-align: middle; margin-left: 90%"
+        @click="removeMeal"
+      >
+        <div style="transform: translateY(-16px) translateX(-2px)">-</div>
+      </button>
     </div>
-    <div><SingleMealNutrients /></div>
+    <div class="mealElement">
+      <MealElementLegendRow />
+      <MealElement />
+    </div>
+    <div style="padding-top: 10px; padding-bottom: 5px">
+      <button class="addMealElementbutton" @click="addMealElement">
+        <div style="transform: translateY(-2px) translateX(-0px)">+</div>
+      </button>
+    </div>
+
+    <!-- <div><SingleMealNutrients /></div> -->
   </div>
 </template>
 
 <script>
 import MealElementLegendRow from "./MealElementLegendRow.vue";
 import MealElement from "./MealElement.vue";
+// import SingleMealNutrients from "./SingleMealNutrients.vue";
 export default {
   components: {
     MealElementLegendRow: MealElementLegendRow,
     MealElement: MealElement,
+  },
+  data() {
+    return {
+      mealElements: [],
+    };
+  },
+  methods: {
+    addMealElement() {
+      alert("MealElementAdded");
+      // this.items.push({title:this.newItem,
+      //   completed:false,
+      //   id:Math.random()
+      // })
+      // this.newItem=""
+    },
+    removeMeal() {
+      alert("MealRemoved");
+      // this.items.push({title:this.newItem,
+      //   completed:false,
+      //   id:Math.random()
+      // })
+      // this.newItem=""
+    },
   },
 };
 </script>
 
 <style scoped>
 .singleMealWrapper {
-  margin: 0;
+  margin-bottom: 10px;
   border-color: #2d865925;
   border-width: 3px;
   border-style: solid;
   border-radius: 5px;
   background-color: #2d865917;
 }
-.singleMealName {
-  padding: 10px;
+.singleMealRibbon {
   padding-left: 20px;
-  background-color: lightgray;
-  font-size: 36px;
+  background-color: silver;
+  font-size: 24px;
   font-weight: bold;
-  color: white;
+  color: black;
 }
 .mealElement {
   padding: 20px;
   font-size: 21px;
   font-weight: bold;
   padding-top: 10px;
+  padding-bottom: 0;
 }
 table {
   border-collapse: collapse;
@@ -58,5 +97,26 @@ tr {
   border-color: red;
   padding: 20px;
   border-collapse: collapse;
+}
+.addMealElementbutton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+  margin: 0 auto;
+  font-weight: bold;
+  color: green;
+}
+.removeMeal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  font-size: 36px;
+  font-weight: bold;
+  color: red;
 }
 </style>
