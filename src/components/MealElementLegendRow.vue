@@ -16,18 +16,7 @@
 </template>
 
 <script>
-export default {
-  methods: {
-    removeMealElement() {
-      alert("MealElementRemoved");
-      // this.items.push({title:this.newItem,
-      //   completed:false,
-      //   id:Math.random()
-      // })
-      // this.newItem=""
-    },
-  },
-};
+export default {};
 </script>
 
 <style scoped>

@@ -1,20 +1,25 @@
 <template>
   <div class="singleMealWrapper">
     <div class="singleMealRibbon">
-      <label style="display: inline-block; vertical-align: middle"
-        >Meal name</label
-      >
+      <label style="display: inline-block; vertical-align: middle">{{
+        item.name
+      }}</label>
       <button
         class="removeMeal"
         style="display: inline-block; vertical-align: middle; margin-left: 90%"
-        @click="removeMeal"
+        @click="removeItem(item.id)"
       >
         <div style="transform: translateY(-16px) translateX(-2px)">-</div>
       </button>
     </div>
     <div class="mealElement">
       <MealElementLegendRow />
-      <MealElement />
+      <MealElement
+        v-for="mealElement in item.mealElements"
+        :key="mealElement.id"
+        :item="mealElement"
+        @removeClicked="removeItem"
+      />
     </div>
     <div style="padding-top: 10px; padding-bottom: 5px">
       <button class="addMealElementbutton" @click="addMealElement">
@@ -31,6 +36,7 @@ import MealElementLegendRow from "./MealElementLegendRow.vue";
 import MealElement from "./MealElement.vue";
 // import SingleMealNutrients from "./SingleMealNutrients.vue";
 export default {
+  props: ["item"],
   components: {
     MealElementLegendRow: MealElementLegendRow,
     MealElement: MealElement,
@@ -42,20 +48,10 @@ export default {
   },
   methods: {
     addMealElement() {
-      alert("MealElementAdded");
-      // this.items.push({title:this.newItem,
-      //   completed:false,
-      //   id:Math.random()
-      // })
-      // this.newItem=""
+      this.$emit("addMealElementClicked");
     },
-    removeMeal() {
-      alert("MealRemoved");
-      // this.items.push({title:this.newItem,
-      //   completed:false,
-      //   id:Math.random()
-      // })
-      // this.newItem=""
+    removeItem() {
+      this.$emit("removeClicked", this.item.id);
     },
   },
 };
