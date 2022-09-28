@@ -2,17 +2,16 @@
   <div class="eatenCaloriesWrapper">
     <div>
       <SingleMeal
-        v-for="item in items"
-        :key="item.id"
-        :item="item"
+        v-for="meal in meals"
+        :key="meal.id"
+        :meal="meal"
         @removeClicked="removeItem"
-        @addMealElementClicked="addMealElement"
       />
     </div>
     <button class="addMeal" @click="addMeal">
       <div style="transform: translateY(-2px) translateX(-0px)">+</div>
     </button>
-    <div>{{ items }}</div>
+    <div>{{ meals }}</div>
   </div>
 </template>
 
@@ -23,36 +22,36 @@ export default {
   components: {
     SingleMeal,
   },
+  name: "eatenCalories",
   data() {
     return {
-      items: [],
+      meals: [],
     };
   },
   methods: {
     addMeal() {
-      this.items.push({
-        name: "Meal " + (this.items.length + 1),
+      this.meals.push({
+        name: "Meal " + (this.meals.length + 1),
         mealElements: [],
         id: Math.random(),
       });
     },
     removeItem(id) {
-      const index = this.items.findIndex((item) => item.id === id);
-      window.console.log(this);
-      this.items.splice(index, 1);
+      const index = this.meals.findIndex((meal) => meal.id === id);
+      this.meals.splice(index, 1);
     },
-    addMealElement(item) {
-      window.console.log(this);
-      this.items.mealElements.push({
-        name: "Product name",
-        weight: 0,
-        proteins: 0,
-        carbs: 0,
-        fat: 0,
-        kcal: 0,
-        id: Math.random(),
-      });
-    },
+    // addMealElement(item) {
+    //   window.console.log(this.items.mealElements);
+    //   this.items.mealElements.push({
+    //     name: "Product name",
+    //     weight: 0,
+    //     proteins: 0,
+    //     carbs: 0,
+    //     fat: 0,
+    //     kcal: 0,
+    //     id: Math.random(),
+    //   });
+    // },
   },
 };
 </script>

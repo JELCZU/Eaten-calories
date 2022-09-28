@@ -2,7 +2,7 @@
   <div class="singleMealWrapper">
     <div class="singleMealRibbon">
       <label style="display: inline-block; vertical-align: middle">{{
-        item.name
+        meal.name
       }}</label>
       <button
         class="removeMeal"
@@ -14,12 +14,7 @@
     </div>
     <div class="mealElement">
       <MealElementLegendRow />
-      <MealElement
-        v-for="mealElement in item.mealElements"
-        :key="mealElement.id"
-        :item="mealElement"
-        @removeClicked="removeItem"
-      />
+      <MealElement />
     </div>
     <div style="padding-top: 10px; padding-bottom: 5px">
       <button class="addMealElementbutton" @click="addMealElement">
@@ -34,7 +29,6 @@
 <script>
 import MealElementLegendRow from "./MealElementLegendRow.vue";
 import MealElement from "./MealElement.vue";
-// import SingleMealNutrients from "./SingleMealNutrients.vue";
 export default {
   props: ["item"],
   components: {
@@ -48,7 +42,7 @@ export default {
   },
   methods: {
     addMealElement() {
-      this.$emit("addMealElementClicked");
+      this.$emit("addMealElementClicked", this.item);
     },
     removeItem() {
       this.$emit("removeClicked", this.item.id);

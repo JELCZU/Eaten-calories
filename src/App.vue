@@ -1,16 +1,18 @@
 <template>
   <div class="wrapper">
-    <h1>Consumpted nutrients</h1>
-    <EatenCalories />
+    <AppHeader />
+    <!-- <EatenCalories /> -->
   </div>
 </template>
 
 <script>
-import EatenCalories from "./components/eatenCalories.vue";
+// import EatenCalories from "./components/eatenCalories.vue";
+import AppHeader from "./components/AppHeader.vue";
 
 export default {
   components: {
-    EatenCalories: EatenCalories,
+    // EatenCalories,
+    AppHeader,
   },
 };
 </script>
