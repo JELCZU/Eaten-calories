@@ -1,18 +1,18 @@
 <template>
   <div class="wrapper">
     <AppHeader />
-    <!-- <EatenCalories /> -->
+    <EatenCalories />
   </div>
 </template>
 
 <script>
-// import EatenCalories from "./components/eatenCalories.vue";
+import EatenCalories from "./components/EatenCalories.vue";
 import AppHeader from "./components/AppHeader.vue";
 
 export default {
   components: {
-    // EatenCalories,
     AppHeader,
+    EatenCalories,
   },
 };
 </script>

@@ -2,10 +2,12 @@
   <div class="eatenCaloriesWrapper">
     <div>
       <SingleMeal
+        @removeMealClicked="removeMeal"
+        @addMealElementClicked="addMealElement"
+        @removeMealElementClicked="removeMealElement"
         v-for="meal in meals"
         :key="meal.id"
         :meal="meal"
-        @removeClicked="removeItem"
       />
     </div>
     <button class="addMeal" @click="addMeal">
@@ -19,10 +21,11 @@
 import SingleMeal from "./SingleMeal.vue";
 
 export default {
+  name: "eatenCalories",
   components: {
     SingleMeal,
   },
-  name: "eatenCalories",
+
   data() {
     return {
       meals: [],
@@ -36,22 +39,32 @@ export default {
         id: Math.random(),
       });
     },
-    removeItem(id) {
-      const index = this.meals.findIndex((meal) => meal.id === id);
-      this.meals.splice(index, 1);
+    removeMeal(mealId) {
+      window.console.log("aaaa");
+      const mealIndex = this.meals.findIndex((meal) => meal.id === mealId);
+      this.meals.splice(mealIndex, 1);
     },
-    // addMealElement(item) {
-    //   window.console.log(this.items.mealElements);
-    //   this.items.mealElements.push({
-    //     name: "Product name",
-    //     weight: 0,
-    //     proteins: 0,
-    //     carbs: 0,
-    //     fat: 0,
-    //     kcal: 0,
-    //     id: Math.random(),
-    //   });
-    // },
+    addMealElement(mealId) {
+      // window.console.log(this.meal.mealElements);
+      const mealIndex = this.meals.findIndex((meal) => meal.id === mealId);
+      this.meals[mealIndex].mealElements.push({
+        name: "Product " + (this.meals[mealIndex].mealElements.length + 1),
+        weight: 0,
+        proteins: 0,
+        carbs: 0,
+        fat: 0,
+        kcal: 0,
+        id: Math.random(),
+      });
+    },
+    removeMealElement(mealId, mealElementId) {
+      window.console.log(mealId + "  " + mealElementId);
+      const mealIndex = this.meals.findIndex((meal) => meal.id === mealId);
+      const mealElementIndex = this.meals[mealIndex].mealElements.findIndex(
+        (mealElement) => mealElement.id === mealElementId
+      );
+      this.meals[mealIndex].mealElements.splice(mealElementIndex, 1);
+    },
   },
 };
 </script>

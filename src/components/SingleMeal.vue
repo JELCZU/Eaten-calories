@@ -7,17 +7,27 @@
       <button
         class="removeMeal"
         style="display: inline-block; vertical-align: middle; margin-left: 90%"
-        @click="removeItem(item.id)"
+        @click="$emit('removeMealClicked', meal.id)"
       >
         <div style="transform: translateY(-16px) translateX(-2px)">-</div>
       </button>
     </div>
     <div class="mealElement">
       <MealElementLegendRow />
-      <MealElement />
+      <MealElement
+        @removeMealElementClicked="
+          $emit('removeMealElementClicked', meal.id, mealElement.id)
+        "
+        v-for="mealElement in meal.mealElements"
+        :key="mealElement.id"
+        :mealElement="mealElement"
+      />
     </div>
     <div style="padding-top: 10px; padding-bottom: 5px">
-      <button class="addMealElementbutton" @click="addMealElement">
+      <button
+        class="addMealElementbutton"
+        @click="$emit('addMealElementClicked', meal.id)"
+      >
         <div style="transform: translateY(-2px) translateX(-0px)">+</div>
       </button>
     </div>
@@ -30,7 +40,8 @@
 import MealElementLegendRow from "./MealElementLegendRow.vue";
 import MealElement from "./MealElement.vue";
 export default {
-  props: ["item"],
+  name: "SingleMeal",
+  props: ["meal"],
   components: {
     MealElementLegendRow: MealElementLegendRow,
     MealElement: MealElement,
@@ -41,11 +52,8 @@ export default {
     };
   },
   methods: {
-    addMealElement() {
-      this.$emit("addMealElementClicked", this.item);
-    },
-    removeItem() {
-      this.$emit("removeClicked", this.item.id);
+    removeMealElement(id) {
+      window.console.log("aaa " + id);
     },
   },
 };

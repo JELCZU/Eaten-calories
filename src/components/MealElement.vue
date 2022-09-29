@@ -4,22 +4,43 @@
       <table>
         <tr>
           <td>
-            <input style="width: 80%" type="text" placeholder="Product name" />
+            <input
+              style="width: 80%"
+              type="text"
+              placeholder="Product name"
+              v-model="this.mealElement.name"
+            />
           </td>
           <td>
-            <input type="text" placeholder="Weight" />
+            <input
+              type="text"
+              placeholder="Weight"
+              v-model="this.mealElement.weight"
+            />
             <label>g</label>
           </td>
           <td>
-            <input type="text" placeholder="Proteins" />
+            <input
+              type="text"
+              placeholder="Proteins"
+              v-model="this.mealElement.proteins"
+            />
             <label>g</label>
           </td>
           <td>
-            <input type="text" placeholder="Carbs" />
+            <input
+              type="text"
+              placeholder="Carbs"
+              v-model="this.mealElement.carbs"
+            />
             <label>g</label>
           </td>
           <td>
-            <input type="text" placeholder="Fat" />
+            <input
+              type="text"
+              placeholder="Fat"
+              v-model="this.mealElement.fat"
+            />
             <label>g</label>
           </td>
           <td>
@@ -27,12 +48,13 @@
               style="display: inline-block"
               type="text"
               placeholder="kcal"
+              v-model="this.mealElement.kcal"
             />
             <div style="display: inline-block"><label>kcal</label></div>
             <div style="display: inline-block">
               <button
                 class="removeMealElementbutton"
-                @click="removeMealElement"
+                @click="$emit('removeMealElementClicked', mealElement.id)"
               >
                 <div style="transform: translateY(-16px) translateX(-1px)">
                   -
@@ -48,15 +70,12 @@
 
 <script>
 export default {
+  name: "MealElement",
+  props: ["mealElement"],
   methods: {
-    removeMealElement() {
-      alert("MealElementRemoved");
-      // this.items.push({title:this.newItem,
-      //   completed:false,
-      //   id:Math.random()
-      // })
-      // this.newItem=""
-    },
+    // removeMealElementClicked() {
+    //   window.console.log(this.mealElement);
+    // },
   },
 };
 </script>
