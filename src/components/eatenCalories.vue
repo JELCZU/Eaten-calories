@@ -15,16 +15,18 @@
       <div style="transform: translateY(-2px) translateX(-0px)">+</div>
     </button>
     <div>{{ meals }}</div>
+    <AllNutrients :meals="meals" />
   </div>
 </template>
 
 <script>
 import SingleMeal from "./SingleMeal.vue";
-
+import AllNutrients from "./AllNutrients.vue";
 export default {
   name: "eatenCalories",
   components: {
     SingleMeal,
+    AllNutrients,
   },
 
   data() {
@@ -41,12 +43,10 @@ export default {
       });
     },
     removeMeal(mealId) {
-      window.console.log("aaaa");
       const mealIndex = this.meals.findIndex((meal) => meal.id === mealId);
       this.meals.splice(mealIndex, 1);
     },
     addMealElement(mealId) {
-      // window.console.log(this.meal.mealElements);
       const mealIndex = this.meals.findIndex((meal) => meal.id === mealId);
       this.meals[mealIndex].mealElements.push({
         name: "Product " + (this.meals[mealIndex].mealElements.length + 1),
@@ -59,7 +59,6 @@ export default {
       });
     },
     removeMealElement(mealId, mealElementId) {
-      window.console.log(mealId + "  " + mealElementId);
       const mealIndex = this.meals.findIndex((meal) => meal.id === mealId);
       const mealElementIndex = this.meals[mealIndex].mealElements.findIndex(
         (mealElement) => mealElement.id === mealElementId
@@ -67,9 +66,6 @@ export default {
       this.meals[mealIndex].mealElements.splice(mealElementIndex, 1);
     },
     mealElementNameChanged(mealId, mealElementId, mealElementName) {
-      window.console.log(
-        mealId + "  " + mealElementId + "  " + mealElementName
-      );
       const mealIndex = this.meals.findIndex((meal) => meal.id === mealId);
       const mealElementIndex = this.meals[mealIndex].mealElements.findIndex(
         (mealElement) => mealElement.id === mealElementId

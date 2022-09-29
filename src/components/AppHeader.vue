@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="HeaderWrapper">
     <h1>Eaten calories</h1>
   </div>
 </template>
@@ -11,6 +11,12 @@ export default {
 </script>
 
 <style scoped>
+.HeaderWrapper {
+  background-color: rgba(119, 139, 115, 0.658);
+  margin: 20px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
 h1 {
   text-align: center;
   padding-top: 0;

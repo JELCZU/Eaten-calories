@@ -95,7 +95,7 @@ table {
 td,
 tr {
   font-size: 14px;
-  font-weight: bold;
+  font-weight: normal;
   white-space: nowrap;
   border-style: solid;
   border-width: 1px;

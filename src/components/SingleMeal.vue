@@ -25,7 +25,7 @@
         :key="mealElement.id"
         :mealElement="mealElement"
       />
-      <div style="padding-top: 10px; padding-bottom: 5px">
+      <div style="padding: 5px">
         <button
           class="addMealElementbutton"
           @click="$emit('addMealElementClicked', meal.id)"
@@ -35,8 +35,6 @@
       </div>
       <SingleMealNutrients :meal="meal" />
     </div>
-
-    <!-- <div><SingleMealNutrients /></div> -->
   </div>
 </template>
 
@@ -77,7 +75,7 @@ export default {
 .singleMealRibbon {
   padding-left: 20px;
   background-color: silver;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   color: black;
 }
@@ -122,5 +120,6 @@ tr {
   font-size: 36px;
   font-weight: bold;
   color: red;
+  transform: translateY(-1px);
 }
 </style>
