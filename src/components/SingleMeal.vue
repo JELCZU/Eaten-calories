@@ -18,18 +18,22 @@
         @removeMealElementClicked="
           $emit('removeMealElementClicked', meal.id, mealElement.id)
         "
+        @mealElementNameChanged="
+          $emit('mealElementNameChanged', meal.id, mealElement.id, this)
+        "
         v-for="mealElement in meal.mealElements"
         :key="mealElement.id"
         :mealElement="mealElement"
       />
-    </div>
-    <div style="padding-top: 10px; padding-bottom: 5px">
-      <button
-        class="addMealElementbutton"
-        @click="$emit('addMealElementClicked', meal.id)"
-      >
-        <div style="transform: translateY(-2px) translateX(-0px)">+</div>
-      </button>
+      <div style="padding-top: 10px; padding-bottom: 5px">
+        <button
+          class="addMealElementbutton"
+          @click="$emit('addMealElementClicked', meal.id)"
+        >
+          <div style="transform: translateY(-2px) translateX(-0px)">+</div>
+        </button>
+      </div>
+      <SingleMealNutrients :meal="meal" />
     </div>
 
     <!-- <div><SingleMealNutrients /></div> -->
@@ -39,12 +43,14 @@
 <script>
 import MealElementLegendRow from "./MealElementLegendRow.vue";
 import MealElement from "./MealElement.vue";
+import SingleMealNutrients from "./SingleMealNutrients.vue";
 export default {
   name: "SingleMeal",
   props: ["meal"],
   components: {
-    MealElementLegendRow: MealElementLegendRow,
-    MealElement: MealElement,
+    MealElementLegendRow,
+    MealElement,
+    SingleMealNutrients,
   },
   data() {
     return {

@@ -8,12 +8,14 @@
               style="width: 80%"
               type="text"
               placeholder="Product name"
-              v-model="this.mealElement.name"
+              v-model="mealElement.name"
+              @input="$emit('mealElementNameChanged', mealElement.id, this)"
             />
           </td>
           <td>
             <input
-              type="text"
+              type="number"
+              min="0"
               placeholder="Weight"
               v-model="this.mealElement.weight"
             />
@@ -21,7 +23,8 @@
           </td>
           <td>
             <input
-              type="text"
+              type="number"
+              min="0"
               placeholder="Proteins"
               v-model="this.mealElement.proteins"
             />
@@ -29,7 +32,8 @@
           </td>
           <td>
             <input
-              type="text"
+              type="number"
+              min="0"
               placeholder="Carbs"
               v-model="this.mealElement.carbs"
             />
@@ -37,7 +41,8 @@
           </td>
           <td>
             <input
-              type="text"
+              type="number"
+              min="0"
               placeholder="Fat"
               v-model="this.mealElement.fat"
             />
@@ -46,7 +51,8 @@
           <td>
             <input
               style="display: inline-block"
-              type="text"
+              type="number"
+              min="0"
               placeholder="kcal"
               v-model="this.mealElement.kcal"
             />
@@ -72,11 +78,7 @@
 export default {
   name: "MealElement",
   props: ["mealElement"],
-  methods: {
-    // removeMealElementClicked() {
-    //   window.console.log(this.mealElement);
-    // },
-  },
+  methods: {},
 };
 </script>
 
@@ -104,7 +106,7 @@ tr {
 input {
   padding: 5px;
   width: 50%;
-  font-size: 14px;
+  font-size: 12px;
 }
 label {
   padding-left: 5px;

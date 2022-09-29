@@ -5,6 +5,7 @@
         @removeMealClicked="removeMeal"
         @addMealElementClicked="addMealElement"
         @removeMealElementClicked="removeMealElement"
+        @mealElementNameChanged="mealElementNameChanged"
         v-for="meal in meals"
         :key="meal.id"
         :meal="meal"
@@ -64,6 +65,17 @@ export default {
         (mealElement) => mealElement.id === mealElementId
       );
       this.meals[mealIndex].mealElements.splice(mealElementIndex, 1);
+    },
+    mealElementNameChanged(mealId, mealElementId, mealElementName) {
+      window.console.log(
+        mealId + "  " + mealElementId + "  " + mealElementName
+      );
+      const mealIndex = this.meals.findIndex((meal) => meal.id === mealId);
+      const mealElementIndex = this.meals[mealIndex].mealElements.findIndex(
+        (mealElement) => mealElement.id === mealElementId
+      );
+      this.meals[mealIndex].mealElements[mealElementIndex].name =
+        mealElementName;
     },
   },
 };

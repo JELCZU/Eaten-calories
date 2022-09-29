@@ -39,7 +39,7 @@ tr {
   border-style: solid;
   border-width: 1px;
   border-color: grey;
-  padding: 10px;
+  padding: 5px;
   text-align: center;
 }
 input {
