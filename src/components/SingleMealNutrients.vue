@@ -4,11 +4,11 @@
       <table>
         <tr>
           <td>Total</td>
-          <td>{{ mealElementsSum(meal, "weight") }}g</td>
-          <td>{{ mealElementsSum(meal, "proteins") }}g</td>
-          <td>{{ mealElementsSum(meal, "carbs") }}g</td>
-          <td>{{ mealElementsSum(meal, "fat") }}g</td>
-          <td>{{ mealElementsSum(meal, "kcal") }}kcal</td>
+          <td>{{ mealElementsSum("weight") }}g</td>
+          <td>{{ mealElementsSum("proteins") }}g</td>
+          <td>{{ mealElementsSum("carbs") }}g</td>
+          <td>{{ mealElementsSum("fat") }}g</td>
+          <td>{{ mealElementsSum("kcal") }}kcal</td>
         </tr>
       </table>
     </div>
@@ -20,9 +20,9 @@ export default {
   name: "SingleMealNutrients",
   props: ["meal"],
   methods: {
-    mealElementsSum(meal, nutrient) {
+    mealElementsSum(nutrient) {
       let summariedNutients = 0;
-      meal.mealElements.forEach((element) => {
+      this.meal.mealElements.forEach((element) => {
         summariedNutients += element[nutrient];
       });
       return summariedNutients;

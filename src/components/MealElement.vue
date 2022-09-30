@@ -8,7 +8,15 @@
               style="width: 80%"
               type="text"
               placeholder="Product name"
-              v-model="this.mealElement.name"
+              :value="this.mealElement.name"
+              @input="
+                $emit(
+                  'mealElementChanged',
+                  mealElement.id,
+                  'name',
+                  $event.target.value
+                )
+              "
             />
           </td>
           <td>
@@ -16,7 +24,15 @@
               type="number"
               min="0"
               placeholder="Weight"
-              v-model="this.mealElement.weight"
+              :value="this.mealElement.weight"
+              @input="
+                $emit(
+                  'mealElementChanged',
+                  mealElement.id,
+                  'weight',
+                  parseInt($event.target.value)
+                )
+              "
             />
             <label>g</label>
           </td>
@@ -25,7 +41,15 @@
               type="number"
               min="0"
               placeholder="Proteins"
-              v-model="this.mealElement.proteins"
+              :value="this.mealElement.proteins"
+              @input="
+                $emit(
+                  'mealElementChanged',
+                  mealElement.id,
+                  'proteins',
+                  parseInt($event.target.value)
+                )
+              "
             />
             <label>g</label>
           </td>
@@ -34,7 +58,15 @@
               type="number"
               min="0"
               placeholder="Carbs"
-              v-model="this.mealElement.carbs"
+              :value="this.mealElement.carbs"
+              @input="
+                $emit(
+                  'mealElementChanged',
+                  mealElement.id,
+                  'carbs',
+                  parseInt($event.target.value)
+                )
+              "
             />
             <label>g</label>
           </td>
@@ -43,7 +75,15 @@
               type="number"
               min="0"
               placeholder="Fat"
-              v-model="this.mealElement.fat"
+              :value="this.mealElement.fat"
+              @input="
+                $emit(
+                  'mealElementChanged',
+                  mealElement.id,
+                  'fat',
+                  parseInt($event.target.value)
+                )
+              "
             />
             <label>g</label>
           </td>
@@ -53,7 +93,15 @@
               type="number"
               min="0"
               placeholder="kcal"
-              v-model="this.mealElement.kcal"
+              :value="this.mealElement.kcal"
+              @input="
+                $emit(
+                  'mealElementChanged',
+                  mealElement.id,
+                  'kcal',
+                  parseInt($event.target.value)
+                )
+              "
             />
             <div style="display: inline-block"><label>kcal</label></div>
             <div style="display: inline-block">
@@ -77,7 +125,11 @@
 export default {
   name: "MealElement",
   props: ["mealElement"],
-  methods: {},
+  methods: {
+    mealElementChange(item) {
+      window.console.log(item);
+    },
+  },
 };
 </script>
 

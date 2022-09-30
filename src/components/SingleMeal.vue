@@ -22,11 +22,9 @@
     <div class="mealElement">
       <MealElementLegendRow />
       <MealElement
+        @mealElementChanged="mealElementChanged"
         @removeMealElementClicked="
           $emit('removeMealElementClicked', meal.id, mealElement.id)
-        "
-        @mealElementNameChanged="
-          $emit('mealElementNameChanged', meal.id, mealElement.id, this)
         "
         v-for="mealElement in meal.mealElements"
         :key="mealElement.id"
@@ -57,14 +55,15 @@ export default {
     MealElement,
     SingleMealNutrients,
   },
-  data() {
-    return {
-      mealElements: [],
-    };
-  },
   methods: {
-    removeMealElement(id) {
-      window.console.log("aaa " + id);
+    mealElementChanged(mealElementId, mealElementProperty, element) {
+      this.$emit(
+        "mealElementChanged",
+        this.meal.id,
+        mealElementId,
+        mealElementProperty,
+        element
+      );
     },
   },
 };

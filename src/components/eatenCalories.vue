@@ -5,6 +5,7 @@
         @removeMealClicked="removeMeal"
         @addMealElementClicked="addMealElement"
         @removeMealElementClicked="removeMealElement"
+        @MealElementChanged="MealElementChange"
         @mealElementNameChanged="mealElementNameChanged"
         v-for="meal in meals"
         :key="meal.id"
@@ -14,7 +15,7 @@
     <button class="addMeal" @click="addMeal">
       <div style="transform: translateY(-2px) translateX(-0px)">+</div>
     </button>
-    <!-- <div>{{ meals }}</div> -->
+    <div>{{ meals }}</div>
     <AllNutrients :meals="meals" />
   </div>
 </template>
@@ -72,6 +73,15 @@ export default {
       );
       this.meals[mealIndex].mealElements[mealElementIndex].name =
         mealElementName;
+    },
+    MealElementChange(mealId, mealElementId, mealElementProperty, value) {
+      const mealIndex = this.meals.findIndex((meal) => meal.id === mealId);
+      const mealElementIndex = this.meals[mealIndex].mealElements.findIndex(
+        (mealElement) => mealElement.id === mealElementId
+      );
+      this.meals[mealIndex].mealElements[mealElementIndex][
+        mealElementProperty
+      ] = value;
     },
   },
 };

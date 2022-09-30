@@ -58,4 +58,4 @@ This app is inspired by Traversy Media [ Vue JS Crash Course ](https://www.youtu
 
 ### Graphic sources
 
-[edit icon](https://fontawesome.com/icons/pen-to-square?s=regular&f=classic)
+[Edit icon](https://fontawesome.com/icons/pen-to-square?s=regular&f=classic)
