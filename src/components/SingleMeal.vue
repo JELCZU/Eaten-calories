@@ -4,9 +4,16 @@
       <label style="display: inline-block; vertical-align: middle">{{
         meal.name
       }}</label>
+
+      <button class="editMealNameBtn">
+        <i
+          class="fa-regular fa-pen-to-square"
+          style="display: inline-block"
+        ></i>
+      </button>
       <button
         class="removeMeal"
-        style="display: inline-block; vertical-align: middle; margin-left: 90%"
+        style="display: inline-block; vertical-align: middle; margin-left: 93%"
         @click="$emit('removeMealClicked', meal.id)"
       >
         <div style="transform: translateY(-16px) translateX(-2px)">-</div>
@@ -110,6 +117,7 @@ tr {
   margin: 0 auto;
   font-weight: bold;
   color: green;
+  cursor: pointer;
 }
 .removeMeal {
   display: flex;
@@ -121,5 +129,16 @@ tr {
   font-weight: bold;
   color: red;
   transform: translateY(-1px);
+  cursor: pointer;
+}
+.editMealNameBtn {
+  background-color: transparent;
+  margin-left: 10px;
+  border-style: none;
+  cursor: pointer;
+  border-radius: 100%;
+}
+.editMealNameBtn:hover {
+  color: gray;
 }
 </style>

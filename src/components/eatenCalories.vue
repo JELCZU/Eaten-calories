@@ -14,7 +14,7 @@
     <button class="addMeal" @click="addMeal">
       <div style="transform: translateY(-2px) translateX(-0px)">+</div>
     </button>
-    <div>{{ meals }}</div>
+    <!-- <div>{{ meals }}</div> -->
     <AllNutrients :meals="meals" />
   </div>
 </template>
@@ -95,5 +95,6 @@ export default {
   margin: 0 auto;
   font-weight: bold;
   color: green;
+  cursor: pointer;
 }
 </style>

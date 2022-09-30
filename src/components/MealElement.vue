@@ -8,8 +8,7 @@
               style="width: 80%"
               type="text"
               placeholder="Product name"
-              v-model="mealElement.name"
-              @input="$emit('mealElementNameChanged', mealElement.id, this)"
+              v-model="this.mealElement.name"
             />
           </td>
           <td>
@@ -121,5 +120,6 @@ label {
   font-size: 36px;
   font-weight: normal;
   position: absolute;
+  cursor: pointer;
 }
 </style>

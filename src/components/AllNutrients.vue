@@ -29,7 +29,6 @@ export default {
       let summariedNutients = 0;
       this.meals.forEach((element) => {
         element.mealElements.forEach((element) => {
-          window.console.log(element[nutrient]);
           summariedNutients += element[nutrient];
         });
       });
@@ -42,6 +41,7 @@ export default {
 <style scoped>
 .MealElementWrapper {
   width: 100%-paddding;
+  padding-top: 10px;
   margin-bottom: -1px;
   position: relative;
 }

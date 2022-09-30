@@ -14,11 +14,9 @@ export default {
 .HeaderWrapper {
   background-color: rgba(119, 139, 115, 0.658);
   margin: 20px;
-  padding-top: 1px;
-  padding-bottom: 1px;
 }
 h1 {
   text-align: center;
-  padding-top: 0;
+  padding: 10px;
 }
 </style>
