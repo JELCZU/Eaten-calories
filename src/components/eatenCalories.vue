@@ -6,7 +6,9 @@
         @addMealElementClicked="addMealElement"
         @removeMealElementClicked="removeMealElement"
         @MealElementChanged="MealElementChange"
-        @mealElementNameChanged="mealElementNameChanged"
+        @edit="edit"
+        @save="save"
+        @esc="esc"
         v-for="meal in meals"
         :key="meal.id"
         :meal="meal"
@@ -39,6 +41,7 @@ export default {
     addMeal() {
       this.meals.push({
         name: "Meal " + (this.meals.length + 1),
+        nameEdit: false,
         mealElements: [],
         id: Math.random(),
       });
@@ -66,14 +69,14 @@ export default {
       );
       this.meals[mealIndex].mealElements.splice(mealElementIndex, 1);
     },
-    mealElementNameChanged(mealId, mealElementId, mealElementName) {
-      const mealIndex = this.meals.findIndex((meal) => meal.id === mealId);
-      const mealElementIndex = this.meals[mealIndex].mealElements.findIndex(
-        (mealElement) => mealElement.id === mealElementId
-      );
-      this.meals[mealIndex].mealElements[mealElementIndex].name =
-        mealElementName;
-    },
+    // mealElementNameChanged(mealId, mealElementId, mealElementName) {
+    //   const mealIndex = this.meals.findIndex((meal) => meal.id === mealId);
+    //   const mealElementIndex = this.meals[mealIndex].mealElements.findIndex(
+    //     (mealElement) => mealElement.id === mealElementId
+    //   );
+    //   this.meals[mealIndex].mealElements[mealElementIndex].name =
+    //     mealElementName;
+    // },
     MealElementChange(mealId, mealElementId, mealElementProperty, value) {
       const mealIndex = this.meals.findIndex((meal) => meal.id === mealId);
       const mealElementIndex = this.meals[mealIndex].mealElements.findIndex(
@@ -82,6 +85,22 @@ export default {
       this.meals[mealIndex].mealElements[mealElementIndex][
         mealElementProperty
       ] = value;
+    },
+    edit(meal) {
+      window.console.log(meal);
+      meal.nameEdit = true;
+      // edit = false;
+    },
+    save(meal, event) {
+      window.console.log(meal, event.target.value);
+      meal.name = event.target.value;
+      meal.nameEdit = false;
+      // edit = false;
+    },
+    esc(meal, event) {
+      window.console.log(meal, event.target.value);
+      meal.nameEdit = false;
+      // edit = false;
     },
   },
 };

@@ -1,11 +1,27 @@
 <template>
   <div class="singleMealWrapper">
     <div class="singleMealRibbon">
-      <label style="display: inline-block; vertical-align: middle">{{
+      <input
+        style="display: inline-block"
+        type="text"
+        v-if="meal.nameEdit"
+        :value="meal.name"
+        @blur="$emit('save', meal, $event)"
+        @keyup.enter="$emit('save', meal, $event)"
+        @keyup.esc="$emit('esc', meal, $event)"
+      />
+      <span
+        style="display: inline-block"
+        v-else
+        @dblclick="$emit('edit', meal)"
+      >
+        {{ meal.name }}
+      </span>
+      <!-- <label style="display: inline-block; vertical-align: middle">{{
         meal.name
-      }}</label>
+      }}</label> -->
 
-      <button class="editMealNameBtn">
+      <button class="editMealNameBtn" @click="$emit('edit', meal)">
         <i
           class="fa-regular fa-pen-to-square"
           style="display: inline-block"
@@ -54,6 +70,11 @@ export default {
     MealElementLegendRow,
     MealElement,
     SingleMealNutrients,
+  },
+  data() {
+    return {
+      valueLocal: this.value,
+    };
   },
   methods: {
     mealElementChanged(mealElementId, mealElementProperty, element) {
