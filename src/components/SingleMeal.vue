@@ -8,7 +8,7 @@
         :value="meal.name"
         @blur="$emit('save', meal, $event)"
         @keyup.enter="$emit('save', meal, $event)"
-        @keyup.esc="$emit('esc', meal, $event)"
+        @keyup.esc="$emit('esc', meal)"
       />
       <span
         style="display: inline-block"

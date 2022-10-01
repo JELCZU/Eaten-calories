@@ -87,20 +87,20 @@ export default {
       ] = value;
     },
     edit(meal) {
-      window.console.log(meal);
       meal.nameEdit = true;
       // edit = false;
     },
     save(meal, event) {
-      window.console.log(meal, event.target.value);
-      meal.name = event.target.value;
-      meal.nameEdit = false;
-      // edit = false;
+      if (
+        (event.target.value != "") &
+        (event.target.value.trim().length != 0)
+      ) {
+        meal.name = event.target.value;
+      }
+      this.esc(meal);
     },
-    esc(meal, event) {
-      window.console.log(meal, event.target.value);
+    esc(meal) {
       meal.nameEdit = false;
-      // edit = false;
     },
   },
 };
