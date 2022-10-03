@@ -17,10 +17,6 @@
       >
         {{ meal.name }}
       </span>
-      <!-- <label style="display: inline-block; vertical-align: middle">{{
-        meal.name
-      }}</label> -->
-
       <button class="editMealNameBtn" @click="$emit('edit', meal)">
         <i
           class="fa-regular fa-pen-to-square"

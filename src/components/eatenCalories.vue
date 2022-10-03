@@ -17,7 +17,6 @@
     <button class="addMeal" @click="addMeal">
       <div style="transform: translateY(-2px) translateX(-0px)">+</div>
     </button>
-    <div>{{ meals }}</div>
     <AllNutrients :meals="meals" />
   </div>
 </template>
@@ -69,14 +68,6 @@ export default {
       );
       this.meals[mealIndex].mealElements.splice(mealElementIndex, 1);
     },
-    // mealElementNameChanged(mealId, mealElementId, mealElementName) {
-    //   const mealIndex = this.meals.findIndex((meal) => meal.id === mealId);
-    //   const mealElementIndex = this.meals[mealIndex].mealElements.findIndex(
-    //     (mealElement) => mealElement.id === mealElementId
-    //   );
-    //   this.meals[mealIndex].mealElements[mealElementIndex].name =
-    //     mealElementName;
-    // },
     MealElementChange(mealId, mealElementId, mealElementProperty, value) {
       const mealIndex = this.meals.findIndex((meal) => meal.id === mealId);
       const mealElementIndex = this.meals[mealIndex].mealElements.findIndex(
@@ -88,7 +79,6 @@ export default {
     },
     edit(meal) {
       meal.nameEdit = true;
-      // edit = false;
     },
     save(meal, event) {
       if (
