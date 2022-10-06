@@ -18,6 +18,7 @@
 
 <script>
 import AllNutrientsLegendRow from "./AllNutrientsLegendRow.vue";
+
 export default {
   name: "AllNutrients",
   props: ["meals"],
@@ -27,9 +28,9 @@ export default {
   methods: {
     wholeDayNutrientsSum(nutrient) {
       let summariedNutients = 0;
-      this.meals.forEach((element) => {
-        element.mealElements.forEach((element) => {
-          summariedNutients += element[nutrient];
+      this.meals.forEach((meal) => {
+        meal.mealElements.forEach((mealElement) => {
+          summariedNutients += mealElement[nutrient];
         });
       });
       return summariedNutients;

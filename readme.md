@@ -22,7 +22,7 @@ or download repository by clicking "Open with GitHub Desktop" or "Download ZIP"
 ![How to download](https://github.com/JELCZU/Eaten-calories/blob/master/img/How%20to%20download.PNG)
 After download repository you can run project.
 
-npm run build
+vue serve
 
 ## About app
 

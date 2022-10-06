@@ -6,18 +6,18 @@
         type="text"
         v-if="meal.nameEdit"
         :value="meal.name"
-        @blur="$emit('save', meal, $event)"
-        @keyup.enter="$emit('save', meal, $event)"
-        @keyup.esc="$emit('esc', meal)"
+        @blur="$emit('save', meal.id, $event)"
+        @keyup.enter="$emit('save', meal.id, $event)"
+        @keyup.esc="$emit('esc', meal.id)"
       />
       <span
         style="display: inline-block"
         v-else
-        @dblclick="$emit('edit', meal)"
+        @dblclick="$emit('edit', meal.id)"
       >
         {{ meal.name }}
       </span>
-      <button class="editMealNameBtn" @click="$emit('edit', meal)">
+      <button class="editMealNameBtn" @click="$emit('edit', meal.id)">
         <i
           class="fa-regular fa-pen-to-square"
           style="display: inline-block"
@@ -59,6 +59,7 @@
 import MealElementLegendRow from "./MealElementLegendRow.vue";
 import MealElement from "./MealElement.vue";
 import SingleMealNutrients from "./SingleMealNutrients.vue";
+
 export default {
   name: "SingleMeal",
   props: ["meal"],

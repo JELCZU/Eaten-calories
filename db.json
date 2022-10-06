@@ -1,0 +1,35 @@
+{
+  "meals": [
+    {
+      "name": "Meal 1sda3123",
+      "nameEdit": false,
+      "mealElements": [
+        {
+          "name": "Catsdaqweasdf",
+          "weight": 1211321,
+          "proteins": 2313,
+          "carbs": 23332,
+          "fat": 2323,
+          "kcal": 123,
+          "id": 0.4823494122668882
+        },
+        {
+          "name": "Product 2saadaqwe",
+          "weight": 1,
+          "proteins": 0,
+          "carbs": 0,
+          "fat": 0,
+          "kcal": 0,
+          "id": 0.5783253156443786
+        }
+      ],
+      "id": 1
+    },
+    {
+      "name": "Meal 2",
+      "nameEdit": false,
+      "mealElements": [],
+      "id": 2
+    }
+  ]
+}
