@@ -13,7 +13,7 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["vue", "prettier"],
+  plugins: ["html", "vue", "prettier"],
   rules: {
     "no-use-before-define": [
       "error",

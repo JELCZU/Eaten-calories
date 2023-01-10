@@ -1,25 +1,31 @@
 <template>
-  <div class="MealElementWrapper">
-    <div>
-      <table>
-        <tr>
-          <td>
-            <input
-              style="width: 80%"
-              type="text"
-              placeholder="Product name"
-              :value="this.mealElement.name"
-              @input="
-                $emit(
-                  'mealElementChanged',
-                  mealElement.id,
-                  'name',
-                  $event.target.value
-                )
-              "
-            />
-          </td>
-          <td>
+  <div class="meal-element">
+    <div class="top-row">
+      <input
+        class="product-name"
+        type="text"
+        placeholder="Product name"
+        :value="this.mealElement.name"
+        @input="
+          $emit(
+            'mealElementChanged',
+            mealElement.id,
+            'name',
+            $event.target.value
+          )
+        "
+      />
+      <button @click="$emit('removeMealElementClicked', mealElement.id)">
+        <font-awesome-icon
+          class="remove-meal-element"
+          icon="fa-solid fa-minus"
+        />
+      </button>
+    </div>
+    <table>
+      <tr>
+        <td>
+          <div>
             <input
               type="number"
               min="0"
@@ -30,13 +36,16 @@
                   'mealElementChanged',
                   mealElement.id,
                   'weight',
-                  parseInt($event.target.value)
+                  parseFloat($event.target.value)
                 )
               "
+              @keypress="validateInput($event, $event.target)"
             />
-            <label>g</label>
-          </td>
-          <td>
+            <h3>g</h3>
+          </div>
+        </td>
+        <td>
+          <div>
             <input
               type="number"
               min="0"
@@ -47,13 +56,16 @@
                   'mealElementChanged',
                   mealElement.id,
                   'proteins',
-                  parseInt($event.target.value)
+                  parseFloat($event.target.value)
                 )
               "
+              @keypress="validateInput($event, $event.target)"
             />
-            <label>g</label>
-          </td>
-          <td>
+            <h3>g</h3>
+          </div>
+        </td>
+        <td>
+          <div>
             <input
               type="number"
               min="0"
@@ -64,15 +76,17 @@
                   'mealElementChanged',
                   mealElement.id,
                   'carbs',
-                  parseInt($event.target.value)
+                  parseFloat($event.target.value)
                 )
               "
+              @keypress="validateInput($event, $event.target)"
             />
-            <label>g</label>
-          </td>
-          <td>
+            <h3>g</h3>
+          </div>
+        </td>
+        <td>
+          <div>
             <input
-              type="number"
               min="0"
               placeholder="Fat"
               :value="this.mealElement.fat"
@@ -81,15 +95,17 @@
                   'mealElementChanged',
                   mealElement.id,
                   'fat',
-                  parseInt($event.target.value)
+                  parseFloat($event.target.value)
                 )
               "
+              @keypress="validateInput($event, $event.target)"
             />
-            <label>g</label>
-          </td>
-          <td>
+            <h3>g</h3>
+          </div>
+        </td>
+        <td>
+          <div>
             <input
-              style="display: inline-block"
               type="number"
               min="0"
               placeholder="kcal"
@@ -99,25 +115,16 @@
                   'mealElementChanged',
                   mealElement.id,
                   'kcal',
-                  parseInt($event.target.value)
+                  parseFloat($event.target.value)
                 )
               "
+              @keypress="validateInput($event, $event.target)"
             />
-            <div style="display: inline-block"><label>kcal</label></div>
-            <div style="display: inline-block">
-              <button
-                class="removeMealElementbutton"
-                @click="$emit('removeMealElementClicked', mealElement.id)"
-              >
-                <div style="transform: translateY(-16px) translateX(-1px)">
-                  -
-                </div>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
+            <h3>kcal</h3>
+          </div>
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -129,49 +136,107 @@ export default {
     mealElementChange(item) {
       window.console.log(item);
     },
+    validateInput(evt, ele) {
+      const theEvent = evt || window.event;
+      let key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode(key);
+      const value = ele.value + key;
+      const regex = /^\d+(,\d{0,2})?$/;
+      if (!regex.test(value)) {
+        theEvent.returnValue = false;
+        if (theEvent.preventDefault) theEvent.preventDefault();
+      }
+    },
   },
 };
 </script>
 
 <style scoped>
-.MealElementWrapper {
-  width: 100%-paddding;
-  margin-bottom: -1px;
-}
-table {
-  border-collapse: collapse;
-  width: 100%;
-  table-layout: fixed;
-}
-td,
-tr {
-  font-size: 14px;
-  font-weight: normal;
-  white-space: nowrap;
-  border-style: solid;
-  border-width: 1px;
-  border-color: silver;
-  padding: 5px;
-  background-color: rgb(219, 219, 219);
+button {
+  background-color: transparent;
+  border-style: none;
+  margin: 0;
+  padding: 0;
 }
 input {
-  padding: 5px;
-  width: 50%;
-  font-size: 12px;
+  background-color: var(--super-light-color);
+  border-style: none;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 2px;
 }
-label {
-  padding-left: 5px;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
-.removeMealElementbutton {
-  color: red;
-  transform: translateY(-16px) translateX(22px);
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.meal-element {
   align-items: center;
+  background-color: var(--lighter-color);
+  /* border-style: solid; */
+  /* border-color: var(--darker-color); */
+  border-width: 2px 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: space-between;
+
+  width: 100%;
+}
+td {
+  padding: 5px;
+  width: 20%;
+}
+td > div {
   justify-content: center;
-  width: 22px;
-  height: 22px;
-  font-size: 36px;
-  font-weight: normal;
-  position: absolute;
-  cursor: pointer;
+  display: flex;
+  width: 100%;
+  gap: 1px;
+}
+td input {
+  width: 40px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-width: 0;
+}
+table td,
+table th {
+  border: 2px solid var(--light-color);
+}
+table tr:first-child th {
+  border-top: 0;
+}
+table tr:last-child td {
+  border-bottom: 0;
+}
+table tr td:first-child,
+table tr th:first-child {
+  border-left: 0;
+}
+table tr td:last-child,
+table tr th:last-child {
+  border-right: 0;
+}
+.top-row {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2px;
+}
+.remove-meal-element {
+  font-size: 30px;
+  color: red;
+}
+.remove-meal-element:hover {
+  color: rgb(255, 56, 56);
 }
 </style>

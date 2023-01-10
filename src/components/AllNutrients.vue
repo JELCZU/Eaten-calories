@@ -1,74 +1,90 @@
 <template>
-  <div class="AllNutrientsWrapper">
-    <div>
-      <AllNutrientsLegendRow style="" />
-      <table>
-        <tr>
-          <td>Daily total</td>
-          <td>{{ wholeDayNutrientsSum("weight") }}g</td>
-          <td>{{ wholeDayNutrientsSum("proteins") }}g</td>
-          <td>{{ wholeDayNutrientsSum("carbs") }}g</td>
-          <td>{{ wholeDayNutrientsSum("fat") }}g</td>
-          <td>{{ wholeDayNutrientsSum("kcal") }}kcal</td>
-        </tr>
-      </table>
-    </div>
+  <div class="nutrients">
+    <table>
+      <tr>
+        <th><h2>Weight</h2></th>
+        <th><h2>Proteins</h2></th>
+        <th><h2>Carbs</h2></th>
+        <th><h2>Fat</h2></th>
+        <th><h2>Calories</h2></th>
+      </tr>
+      <tr>
+        <td>
+          <h2>{{ wholeDayNutrientsSum("weight") }}g</h2>
+        </td>
+        <td>
+          <h2>{{ wholeDayNutrientsSum("proteins") }}g</h2>
+        </td>
+        <td>
+          <h2>{{ wholeDayNutrientsSum("carbs") }}g</h2>
+        </td>
+        <td>
+          <h2>{{ wholeDayNutrientsSum("fat") }}g</h2>
+        </td>
+        <td>
+          <h2>{{ wholeDayNutrientsSum("kcal") }}kcal</h2>
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 
 <script>
-import AllNutrientsLegendRow from "./AllNutrientsLegendRow.vue";
-
 export default {
   name: "AllNutrients",
   props: ["meals"],
-  components: {
-    AllNutrientsLegendRow,
-  },
+  components: {},
   methods: {
     wholeDayNutrientsSum(nutrient) {
       let summariedNutients = 0;
       this.meals.forEach((meal) => {
         meal.mealElements.forEach((mealElement) => {
-          summariedNutients += mealElement[nutrient];
+          summariedNutients += mealElement[nutrient] * 10;
         });
       });
-      return summariedNutients;
+      return summariedNutients / 10;
     },
   },
 };
 </script>
 
 <style scoped>
-.MealElementWrapper {
-  width: 100%-paddding;
-  padding-top: 10px;
-  margin-bottom: -1px;
-  position: relative;
-}
-table {
-  background-color: rgb(228, 228, 228);
-  border-collapse: collapse;
-  width: 100%;
-  table-layout: fixed;
-}
-td,
-tr {
-  font-size: 18px;
-  font-weight: bold;
-  white-space: nowrap;
-  border-style: solid;
-  border-width: 2px;
-  border-color: grey;
-  padding: 5px;
+h2 {
   text-align: center;
 }
-input {
-  padding: 5px;
-  width: 50%;
-  font-size: 14px;
+.nutrients {
+  background-color: var(--darker-color);
+  border-color: var(--darker-color);
+  border-style: solid;
+  border-width: 2px 0;
 }
-label {
-  padding-left: 5px;
+table {
+  /* border: solid; */
+  width: 100%;
+  border-collapse: collapse;
+  border-width: 0;
+}
+table td,
+table th {
+  border: 2px solid var(--super-light-color);
+}
+table tr:first-child th {
+  border-top: 0;
+}
+table tr:last-child td {
+  border-bottom: 0;
+}
+table tr td:first-child,
+table tr th:first-child {
+  border-left: 0;
+}
+table tr td:last-child,
+table tr th:last-child {
+  border-right: 0;
+}
+th,
+td {
+  padding: 5px;
+  width: 20%;
 }
 </style>
